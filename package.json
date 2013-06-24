@@ -7,9 +7,15 @@
     "type": "git",
     "url": "git@github.com:Kevnz/YGen.git"
   },
-  "engines": {
-    "node": "~v0.4.10"
+  "engines": [
+    "node >=0.8.0"
+  ],
+  "bin": {
+    "ygen": "./bin/ygen.js"
   },
-  "dependencies": {},
+  "dependencies": {
+    "commander": "~1.2.0",
+    "heredoc": "~1.1.0"
+  },
   "devDependencies": {}
 }
