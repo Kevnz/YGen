@@ -2,11 +2,18 @@
 
 var program = require('commander');
 
-program
-    .version('0.0.1')
-    .option('-m, --model [name]', 'add model')
-    .option('-t, --template <engine>', 'specify template engine (jade|ejs) [jade]', 'jade')
-    .option('-v, --view', 'specify stylesheet engine (stylus|sass|less) [css]', 'css')
-    .parse(process.argv);
+var asciify = require('asciify'); 
+console.log(process.argv)
+    program
+        .version('0.0.1')
+        .option('-m, --model [name]', 'add model', 'model')
+        .option('-t, --template [name]', 'specify a template to be created', 'template.html')
+        .option('-v, --view', 'create a view')
+        .parse(process.argv);
 
-console.log(program.model)
+    
+asciify('YGen',  function (err, ascii) {
+
+	console.log(ascii.toString());
+ 	console.log(program.model);
+});
