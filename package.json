@@ -20,7 +20,8 @@
     "optimist": "~0.6.0",
     "commander": "~2.0.0",
     "handlebars": "~1.0.12",
-    "mkdirp": "~0.3.5"
+    "mkdirp": "~0.3.5",
+    "yui": "~3.12.0-beta-1"
   },
   "devDependencies": {}
 }
