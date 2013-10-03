@@ -34,9 +34,11 @@ program
     .option('-s, --scaffold [name] [fields]', 'generates a full CRUD setup for a model')
     .action(function(){
         var attrs = [],
-            model, 
+            model,
             view,
+            scaffold,
             isModel,
+            isScaffold,
             isView;
             var t = [].slice.call(arguments, 0);
             console.log('gen');
@@ -52,11 +54,41 @@ program
                     if(typeof t[i] === 'object') {
                         isModel = t[i].model,
                         isView = t[i].view,
+                        isScaffold = t[i].scaffold,
                         model = t[i].model,
-                        view = t[i].view;
+                        view = t[i].view
+                        scaffold = t[i].scaffold;
                     }
             }
-            if (isModel) {
+            if (isScaffold) {
+                isModified = true;
+                isView = true;
+                model = view = scaffold;
+                generateApp({name: scaffold}, function() { 
+                if (isModel) {
+                    generateModel({ model:model, attributes: attrs}, function (err, obj) {
+                        if (err) {
+                            console.log('bugger');
+                            console.error(err);
+                        } else {
+                            console.log('The model was generated');
+                        }
+                    });
+                }
+                if (isView) {
+                    generateView({ view:view, attributes: attrs}, function (err, obj) {
+                        if (err) {
+                            console.log('bugger');
+                            console.error(err);
+                        } else {
+                            console.log('The model was generated');
+                        }
+                    });
+                }
+                    });
+                }
+
+            if ( !isScaffold && isModel) {
                 generateModel({ model:model, attributes: attrs}, function (err, obj) {
                     if (err) {
                         console.log('bugger');
@@ -66,7 +98,7 @@ program
                     }
                 });
             }
-            if (isView) {
+            if (!isScaffold && isView) {
                 generateView({ view:view, attributes: attrs}, function (err, obj) {
                     if (err) {
                         console.log('bugger');
