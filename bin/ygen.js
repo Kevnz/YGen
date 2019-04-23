@@ -4,9 +4,9 @@ var program = require('commander');
 
 var asciify = require('asciify');
 
- 
 
- 
+
+
 
 var generateModel = require('../lib/models').modelGenerator;
 var generateView = require('../lib/views').viewGenerator;
@@ -21,7 +21,7 @@ program
 .action(function (appname) {
     generateApp({name: appname}, function() {
 
-        console.log('dnone')
+        console.log('Done')
     } );
 });
 
@@ -48,8 +48,8 @@ program
             for(var i = 0; i < t.length ; i++) {
                     console.log(typeof t[i]);
                     if (typeof t[i] === 'string') {
-                             
-                            attrs.push({name:t[i].split(':')[0], value: t[i].split(':')[1]}); 
+
+                            attrs.push({name:t[i].split(':')[0], value: t[i].split(':')[1]});
                     }
                     if(typeof t[i] === 'object') {
                         isModel = t[i].model,
@@ -64,7 +64,7 @@ program
                 isModified = true;
                 isView = true;
                 model = view = scaffold;
-                generateApp({name: scaffold}, function() { 
+                generateApp({name: scaffold}, function() {
                 if (isModel) {
                     generateModel({ model:model, attributes: attrs}, function (err, obj) {
                         if (err) {
@@ -110,12 +110,12 @@ program
             }
      });
 
-   
+
 asciify('YGen',  function (err, ascii) {
     console.log(ascii.toString());
     program.parse(process.argv);
     //console.log(program);
 
 
-     
+
 });
